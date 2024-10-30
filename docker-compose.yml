@@ -1,11 +1,15 @@
 version: '3.8'
 
 services:
-  v2ray-container:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    # volumes:
-    #   - ./config.json:/etc/v2ray/config.json
+  v2raya:
+    image: mzz2017/v2raya:latest
+    container_name: v2raya
     ports:
-      - "1080:1080"  # Adjust as necessary for your setup
+      - "80:80"      # Web interface
+      - "1080:1080"  # V2Ray port
+      - "1081:1081"  # Optional if you need another port
+    volumes:
+      - ./config.json:/etc/v2ray/config.json  # Optional: for custom config
+    environment:
+      - V2RAY_CONFIG=/etc/v2ray/config.json  # Set V2Ray config location
+    restart: always

@@ -1,15 +1,8 @@
-# Use the V2Ray base image
-FROM v2fly/v2fly-core:latest
+# Use the mzz2017/v2raya base image
+FROM mzz2017/v2raya:latest
 
-# Copy V2Ray config file into the container
+# Copy V2Ray config file into the container (optional)
 COPY config.json /etc/v2ray/config.json
 
-# Set permissions for the config file
-RUN chmod 644 /etc/v2ray/config.json
-
-# Expose V2Ray default port
-EXPOSE 1081
-
-# Start V2Ray when the container starts
-# CMD ["v2ray", "-config", "/etc/v2ray/config.json"]
-CMD [""]
+# Expose the default ports
+EXPOSE 80 1080 1081
