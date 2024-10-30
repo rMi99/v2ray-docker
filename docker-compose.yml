@@ -1,16 +1,21 @@
+# docker-compose.yml
+
 version: '3.8'
 
 services:
   v2raya:
-    image: mzz2017/v2raya:latest
-    container_name: v2raya
-    ports:
-      - "81:80"      # Web interface
-      - "1080:1080"  # V2Ray port
-      - "1081:1081"  # Optional if you need another port
-      - "2017:2017"  
-    volumes:
-      - ./config.json:/etc/v2ray/config.json  # Optional: for custom config
-    environment:
-      - V2RAY_CONFIG=/etc/v2ray/config.json  # Set V2Ray config location
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: always
+    privileged: true
+    network_mode: host
+    environment:
+      - V2RAYA_LOG_FILE=/tmp/v2raya.log
+      - V2RAYA_V2RAY_BIN=/usr/local/bin/v2ray
+      - V2RAYA_NFTABLES_SUPPORT=off
+      - IPTABLES_MODE=legacy
+    volumes:
+      - /lib/modules:/lib/modules:ro
+      - /etc/resolv.conf:/etc/resolv.conf
+      - ./etc/v2raya:/etc/v2raya
