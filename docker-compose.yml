@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - ./config.json:/etc/v2ray/config.json
+    # volumes:
+    #   - ./config.json:/etc/v2ray/config.json
     ports:
       - "1080:1080"  # Adjust as necessary for your setup
