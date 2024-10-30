@@ -1,10 +1,11 @@
+version: '3.8'
 
 services:
-  v2ray:
-    build: .
-    container_name: v2ray-container
+  v2ray-container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./config.json:/etc/v2ray/config.json
     ports:
-      - "1081:1080"
-    # volumes:
-    # - ./config.json:/etc/v2ray/config.json 
-    restart: always
+      - "1080:1080"  # Adjust as necessary for your setup

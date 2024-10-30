@@ -1,0 +1,38 @@
+{
+  "inbounds": [
+    {
+      "port": 1081, // Local SOCKS5 proxy port
+      "protocol": "socks",
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "vmess", // or whatever protocol the server is using
+      "settings": {
+        "vnext": [
+          {
+            "address": "159.203.175.184", // Server IP
+            "port": 1081, // Server port
+            "users": [
+              {
+                "id": "ce9ff239-be3b-41b7-a3ab-4e5ef9947035", // UUID
+                "alterId": 0 // adjust if needed
+              }
+            ]
+          }
+        ]
+      },
+      "tag": "direct"
+    }
+  ],
+  "dns": {
+    "servers": [
+      "8.8.8.8", // Google's DNS
+      "1.1.1.1"  // Cloudflare's DNS
+    ]
+  }
+}
