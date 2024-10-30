@@ -1,17 +1,14 @@
-# Use a base image
-FROM alpine:latest
+# Use the V2Ray base image
+FROM v2fly/v2fly-core:latest
 
-# Install necessary packages
-RUN apk add --no-cache curl
-
-# Download and install V2Ray
-RUN curl -L -o v2ray.zip https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip \
-    && unzip v2ray.zip -d /usr/local/bin/ \
-    && chmod +x /usr/local/bin/v2ray /usr/local/bin/v2ctl \
-    && rm v2ray.zip
-
-# Copy your V2Ray configuration file
+# Copy V2Ray config file into the container
 COPY config.json /etc/v2ray/config.json
 
-# Set the entrypoint
-ENTRYPOINT ["v2ray", "-config", "/etc/v2ray/config.json"]
+# Set permissions for the config file
+RUN chmod 644 /etc/v2ray/config.json
+
+# Expose V2Ray default port
+EXPOSE 1081
+
+# Start V2Ray when the container starts
+CMD ["v2ray", "-config", "/etc/v2ray/config.json"]
