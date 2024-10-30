@@ -1,0 +1,10 @@
+
+services:
+  v2ray:
+    build: .
+    container_name: v2ray-container
+    ports:
+      - "1081:1080"
+    # volumes:
+    # - ./config.json:/etc/v2ray/config.json 
+    restart: always
