@@ -5,7 +5,7 @@ services:
     image: mzz2017/v2raya:latest
     container_name: v2raya
     ports:
-      - "80:80"      # Web interface
+      - "81:80"      # Web interface
       - "1080:1080"  # V2Ray port
       - "1081:1081"  # Optional if you need another port
     volumes:
