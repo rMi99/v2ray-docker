@@ -8,6 +8,7 @@ services:
       - "81:80"      # Web interface
       - "1080:1080"  # V2Ray port
       - "1081:1081"  # Optional if you need another port
+      - "2017:2017"  
     volumes:
       - ./config.json:/etc/v2ray/config.json  # Optional: for custom config
     environment:
