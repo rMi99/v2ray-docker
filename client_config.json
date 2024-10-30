@@ -1,56 +1,40 @@
 {
   "inbounds": [
       {
-          "port": 1080,  
-          "protocol": "vmess",
+          "port": 1080, 
+          "protocol": "socks",
           "settings": {
-              "clients": [
-                  {
-                      "id": "ce9ff239-be3b-41b7-a3ab-4e5ef9947035",  
-                      "alterId": 64
-                  }
-              ]
-          },
-          "streamSettings": {
-              "network": "tcp",  
-              "security": "none" 
+              "auth": "noauth", 
+              "udp": true  
           }
       }
   ],
   "outbounds": [
       {
-          "protocol": "freedom",
-          "settings": {},
-          "tag": "direct"
-      }
-  ],
-  "routing": {
-      "rules": [
-          {
-              "type": "field",
-              "domain": ["*"],
-              "outboundTag": "direct"
-          }
-      ]
-  },
-  "outboundDetour": [
-      {
-          "protocol": "freedom",
-          "tag": "redirect",
+          "protocol": "vmess", 
           "settings": {
-              "domainStrategy": "useIP",
-              "redirect": {
-                  "host": "m.youtube.com"
-              }
+              "vnext": [
+                  {
+                      "address": "159.203.175.184",  
+                      "port": 1080,  
+                      "users": [
+                          {
+                              "id": "ce9ff239-be3b-41b7-a3ab-4e5ef9947035",  
+                              "alterId": 64, 
+                              "security": "none"  
+                          }
+                      ]
+                  }
+              ]
           }
       }
   ],
   "dns": {
       "servers": [
-          "8.8.8.8",  
+          "8.8.8.8", 
           "8.8.4.4",  
           "1.1.1.1",  
-          "114.114.114.114"  
+          "114.114.114.114"
       ]
   }
 }

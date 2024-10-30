@@ -1,56 +1,115 @@
 {
+  "log": {
+    "access": "",
+    "error": "none",
+    "loglevel": "info"
+  },
   "inbounds": [
-      {
-          "port": 1080,  
-          "protocol": "vmess",
-          "settings": {
-              "clients": [
-                  {
-                      "id": "ce9ff239-be3b-41b7-a3ab-4e5ef9947035",  
-                      "alterId": 64  
-                  }
-              ]
-          },
-          "streamSettings": {
-              "network": "tcp",  
-              "security": "none" 
+    {
+      "port": 20170,
+      "protocol": "socks",
+      "listen": "0.0.0.0",
+      "sniffing": {
+        "enabled": false,
+        "destOverride": ["http", "tls"],
+        "metadataOnly": false
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      },
+      "streamSettings": null,
+      "tag": "socks_ipv4"
+    },
+    {
+      "port": 20171,
+      "protocol": "http",
+      "listen": "0.0.0.0",
+      "sniffing": {
+        "enabled": false,
+        "destOverride": ["http", "tls"],
+        "metadataOnly": false
+      },
+      "streamSettings": null,
+      "tag": "http_ipv4"
+    },
+    {
+      "port": 20172,
+      "protocol": "http",
+      "listen": "0.0.0.0",
+      "sniffing": {
+        "enabled": false,
+        "destOverride": ["http", "tls"],
+        "metadataOnly": false
+      },
+      "streamSettings": null,
+      "tag": "rule-http_ipv4"
+    },
+    {
+      "port": 38483,
+      "protocol": "dokodemo-door",
+      "listen": "0.0.0.0",
+      "sniffing": {
+        "enabled": false,
+        "metadataOnly": false
+      },
+      "settings": {
+        "address": "0.0.0.0"
+      },
+      "streamSettings": null,
+      "tag": "api-in_ipv4"
+    },
+    {
+      "port": 1080,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "ce9ff239-be3b-41b7-a3ab-4e5ef9947035",
+            "alterId": 64
           }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "none"
       }
+    }
   ],
   "outbounds": [
-      {
-          "protocol": "freedom",
-          "settings": {},
-          "tag": "direct"
-      }
+    {
+      "protocol": "freedom",
+      "settings": {},
+      "tag": "direct"
+    }
   ],
   "routing": {
-      "rules": [
-          {
-              "type": "field",
-              "domain": ["*"],
-              "outboundTag": "direct"
-          }
-      ]
+    "rules": [
+      {
+        "type": "field",
+        "domain": ["*"],
+        "outboundTag": "direct"
+      }
+    ]
   },
   "outboundDetour": [
-      {
-          "protocol": "freedom",
-          "tag": "redirect",
-          "settings": {
-              "domainStrategy": "useIP",
-              "redirect": {
-                  "host": "m.youtube.com"
-              }
-          }
+    {
+      "protocol": "freedom",
+      "tag": "redirect",
+      "settings": {
+        "domainStrategy": "useIP",
+        "redirect": {
+          "host": "m.youtube.com"
+        }
       }
+    }
   ],
   "dns": {
-      "servers": [
-          "8.8.8.8",  
-          "8.8.4.4",  
-          "1.1.1.1",  
-          "114.114.114.114" 
-      ]
+    "servers": [
+      "8.8.8.8",
+      "8.8.4.4",
+      "1.1.1.1",
+      "114.114.114.114"
+    ]
   }
 }
