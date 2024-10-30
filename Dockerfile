@@ -11,4 +11,4 @@ RUN chmod 644 /etc/v2ray/config.json
 EXPOSE 1081
 
 # Start V2Ray when the container starts
-CMD ["/usr/bin/v2ray", "-config", "/etc/v2ray/config.json"]
+CMD ["v2ray", "-config", "/etc/v2ray/config.json"]
