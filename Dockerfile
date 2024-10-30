@@ -12,3 +12,4 @@ EXPOSE 1081
 
 # Start V2Ray when the container starts
 # CMD ["v2ray", "-config", "/etc/v2ray/config.json"]
+CMD [""]
